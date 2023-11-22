@@ -1,9 +1,7 @@
 {
-    "cSpell.words": [
-        "cvzone",
-        "imread",
-        "imshow",
-        "LBUTTONDOWN",
-        "RBUTTONDOWN"
-    ]
+  "cSpell.words": ["cvzone", "imread", "imshow", "LBUTTONDOWN", "RBUTTONDOWN"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.provider": "none"
 }
