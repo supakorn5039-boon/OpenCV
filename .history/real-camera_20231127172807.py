@@ -27,7 +27,7 @@ cap = cv2.VideoCapture(0)  # 0 corresponds to the default camera
 # Check if the camera opened successfully
 if not cap.isOpened():
     print("Error: Could not open camera.")
-    exit()
+    exit();
 
 try:
     while True:

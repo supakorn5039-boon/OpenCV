@@ -8,7 +8,7 @@ import uuid
 
 width, height = 70, 27
 threshold = 2
-firebase_update_interval = 6  # Update interval in seconds
+firebase_update_interval =   # Update interval in seconds
 
 # Initialize Firebase
 cred = credentials.Certificate(

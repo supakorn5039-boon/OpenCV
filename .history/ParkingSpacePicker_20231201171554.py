@@ -2,7 +2,7 @@ import cv2
 import pickle
 
 
-width, height = 55, 20
+width, height = 65, 27
 
 
 # Try to load posList from the file, or initialize it as an empty list

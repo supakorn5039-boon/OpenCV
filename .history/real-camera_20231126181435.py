@@ -5,21 +5,16 @@ import time
 import os
 
 # Initialize Firebase Admin SDK with the correct path to your JSON credentials file
-cred = credentials.Certificate(
-    "smart-parking-e0f33-firebase-adminsdk-g8j23-ba95d55480.json")
-firebase_admin.initialize_app(
-    cred, {'storageBucket': "smart-parking-e0f33.appspot.com"})
+cred = credentials.Certificate("smart-parking-e0f33-firebase-adminsdk-g8j23-ba95d55480.json")
+firebase_admin.initialize_app(cred, {'storageBucket': "smart-parking-e0f33.appspot.com"})
 
 # Function to delete an image
-
-
 def delete_image(file_path):
     try:
         os.remove(file_path)
         print(f"Deleted image: {file_path}")
     except Exception as e:
         print(f"Error deleting image: {e}")
-
 
 # Open the default camera (usually the built-in webcam)
 cap = cv2.VideoCapture(0)  # 0 corresponds to the default camera
@@ -39,9 +34,12 @@ try:
             print("Error: Failed to capture frame.")
             break
 
+        # Convert color format from BGR to RGB
+        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
         # Save the captured frame as an image
         image_path = "captured_photo.jpg"
-        cv2.imwrite(image_path, frame)
+        cv2.imwrite(image_path, rgb_frame)
 
         # Upload the captured photo to Firebase Storage
         bucket = storage.bucket()
@@ -56,8 +54,8 @@ try:
         # Delete the temporary image file
         delete_image(image_path)
 
-        # Wait for 10 seconds
-        time.sleep(10)
+        # Wait for 20 seconds
+        time.sleep(20)
 
 except KeyboardInterrupt:
     # Release the camera when the user interrupts the script (e.g., presses Ctrl+C)

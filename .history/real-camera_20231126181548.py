@@ -56,8 +56,8 @@ try:
         # Delete the temporary image file
         delete_image(image_path)
 
-        # Wait for 10 seconds
-        time.sleep(10)
+        # Wait for 20 seconds
+        time.sleep(20)
 
 except KeyboardInterrupt:
     # Release the camera when the user interrupts the script (e.g., presses Ctrl+C)

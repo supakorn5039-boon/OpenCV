@@ -56,7 +56,7 @@ try:
         # Delete the temporary image file
         delete_image(image_path)
 
-        # Wait for 10 seconds
+        # Wait for 20 seconds
         time.sleep(10)
 
 except KeyboardInterrupt:

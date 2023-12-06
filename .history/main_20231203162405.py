@@ -7,8 +7,8 @@ import time
 import uuid
 
 width, height = 70, 27
-threshold = 2
-firebase_update_interval = 6  # Update interval in seconds
+threshold = 3  # Adjust this threshold value based on your requirements
+firebase_update_interval = 10  # Update interval in seconds
 
 # Initialize Firebase
 cred = credentials.Certificate(
@@ -32,11 +32,10 @@ def checkParkingSpace(imgPro, imgOriginal):
             color = (0, 255, 0)  # Green
             thickness = 1
             emptyCount += 1
-
         else:
             # Use shades of red based on the count value
             red_shade = int(count / 10)  # Adjust the division factor as needed
-
+            # Darker shades of red for higher occupancy
             color = (0, 0, 255 - red_shade)
             thickness = 1
             fullCount += 1
@@ -98,8 +97,7 @@ while True:
             print("Document added successfully.")
 
             # Remove previous documents (except the latest one)
-            query = db.collection(
-                'available-lot').order_by('timestamp', direction=firestore.Query.DESCENDING)
+            query = db.collection('available-lot').order_by('timestamp', direction=firestore.Query.DESCENDING)
             documents = query.get()
 
             # Keep track of the latest document ID
@@ -111,15 +109,14 @@ while True:
                     latest_doc_id = document.id
                 else:
                     # Delete previous documents
-                    db.collection(
-                        'available-lot').document(document.id).delete()
+                    db.collection('available-lot').document(document.id).delete()
 
-            print(
-                f"Previous documents deleted. Latest document ID: {latest_doc_id}")
+            print(f"Previous documents deleted. Latest document ID: {latest_doc_id}")
 
             last_firebase_update_time = current_time  # Update the last update time
         except Exception as e:
-            print("Error:", str(e))
+    print("Error:", str(e))
+
 
     cv2.imshow("Image", img_copy)
 

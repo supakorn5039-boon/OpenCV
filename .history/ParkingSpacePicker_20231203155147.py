@@ -1,12 +1,9 @@
 import cv2
 import pickle
 
-
 width, height = 55, 20
 
-
 # Try to load posList from the file, or initialize it as an empty list
-
 try:
     with open('carParkPos', 'rb') as f:
         posList = pickle.load(f)
@@ -30,21 +27,27 @@ def mouseClick(events, x, y, flags, params):
         pickle.dump(posList, f)
 
 
-img = cv2.imread('carParkIMG.jpg')
+img_path = 'com.jpg'
+img = cv2.imread(img_path)
 
-cv2.imshow("Image", img)
-cv2.setMouseCallback("Image", mouseClick)
+if img is None:
+    print(f"Error: Image not loaded. Check the file path: {img_path}")
+else:
+    print("Image loaded successfully. Shape:", img.shape)
 
-while True:
-    img_copy = img.copy()  # Create a copy of the original image to draw on
-    for pos in posList:
-        cv2.rectangle(
-            img_copy, pos, (pos[0] + width, pos[1] + height), (255, 0, 255), 2)
+    # Display the loaded image
+    cv2.imshow("Image", img)
 
-    cv2.imshow("Image", img_copy)
-    key = cv2.waitKey(1)
+    while True:
+        img_copy = img.copy()  # Create a copy of the original image to draw on
+        for pos in posList:
+            cv2.rectangle(
+                img_copy, pos, (pos[0] + width, pos[1] + height), (255, 0, 255), 2)
 
-    if key == 27:  # Press 'Esc' to exit the loop
-        break
+        cv2.imshow("Image", img_copy)
+        key = cv2.waitKey(1)
 
-cv2.destroyAllWindows()
+        if key == 27:  # Press 'Esc' to exit the loop
+            break
+
+    cv2.destroyAllWindows()

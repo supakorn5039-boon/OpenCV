@@ -3,7 +3,7 @@ import pickle
 
 
 width, height = 55, 20
-
+w
 
 # Try to load posList from the file, or initialize it as an empty list
 

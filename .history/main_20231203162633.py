@@ -8,7 +8,7 @@ import uuid
 
 width, height = 70, 27
 threshold = 2
-firebase_update_interval = 6  # Update interval in seconds
+firebase_update_interval = 10  # Update interval in seconds
 
 # Initialize Firebase
 cred = credentials.Certificate(
@@ -36,7 +36,7 @@ def checkParkingSpace(imgPro, imgOriginal):
         else:
             # Use shades of red based on the count value
             red_shade = int(count / 10)  # Adjust the division factor as needed
-
+            # Darker shades of red for higher occupancy
             color = (0, 0, 255 - red_shade)
             thickness = 1
             fullCount += 1

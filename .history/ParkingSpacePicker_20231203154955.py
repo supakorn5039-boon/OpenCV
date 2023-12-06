@@ -30,7 +30,8 @@ def mouseClick(events, x, y, flags, params):
         pickle.dump(posList, f)
 
 
-img = cv2.imread('carParkIMG.jpg')
+img = cv2.imread('com.jpg')
+
 
 cv2.imshow("Image", img)
 cv2.setMouseCallback("Image", mouseClick)

@@ -10,17 +10,6 @@ cred = credentials.Certificate(
 firebase_admin.initialize_app(
     cred, {'storageBucket': "smart-parking-e0f33.appspot.com"})
 
-# Function to delete an image
-
-
-def delete_image(file_path):
-    try:
-        os.remove(file_path)
-        print(f"Deleted image: {file_path}")
-    except Exception as e:
-        print(f"Error deleting image: {e}")
-
-
 # Open the default camera (usually the built-in webcam)
 cap = cv2.VideoCapture(0)  # 0 corresponds to the default camera
 
@@ -53,11 +42,11 @@ try:
         except Exception as e:
             print(f"Error uploading to Firebase Storage: {e}")
 
-        # Delete the temporary image file
-        delete_image(image_path)
+        # Remove the temporary image file
+        os.remove(image_path)
 
-        # Wait for 10 seconds
-        time.sleep(10)
+        # Wait for 20 seconds
+        time.sleep(20)
 
 except KeyboardInterrupt:
     # Release the camera when the user interrupts the script (e.g., presses Ctrl+C)

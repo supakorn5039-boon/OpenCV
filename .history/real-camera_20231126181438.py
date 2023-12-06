@@ -39,9 +39,12 @@ try:
             print("Error: Failed to capture frame.")
             break
 
+        # Convert color format from BGR to RGB
+        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
         # Save the captured frame as an image
         image_path = "captured_photo.jpg"
-        cv2.imwrite(image_path, frame)
+        cv2.imwrite(image_path, rgb_frame)
 
         # Upload the captured photo to Firebase Storage
         bucket = storage.bucket()

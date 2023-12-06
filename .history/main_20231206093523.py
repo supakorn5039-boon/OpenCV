@@ -42,7 +42,7 @@ def checkParkingSpace(imgPro, imgOriginal):
             fullCount += 1
         cv2.rectangle(imgOriginal, pos, (x + width,
                       y + height), color, thickness)
-
+asdodwoadskao doao dwoad
     # Calculate the total count of parking spaces
     totalCount = emptyCount + fullCount
 

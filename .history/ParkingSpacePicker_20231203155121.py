@@ -30,9 +30,14 @@ def mouseClick(events, x, y, flags, params):
         pickle.dump(posList, f)
 
 
-img = cv2.imread('carParkIMG.jpg')
+img = cv2.imread('com.jpg')
+if img is None:
+    print("Error: Image not loaded. Check the file path.")
+else:
+    print("Image loaded successfully. Shape:", img.shape)
+    cv2.imshow("Image", img)
 
-cv2.imshow("Image", img)
+
 cv2.setMouseCallback("Image", mouseClick)
 
 while True:
